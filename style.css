@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    background-color: lightgray;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #0275D8;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .topnav a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid white;
+  }
+  
+  .topnav a:hover {
+    text-decoration: underline;
+  }
+  
+  .topnav a.active {
+    background-color: white;
+    color: blue;
+    border: 1px solid blue;
+    margin-left: 30px;
+  }
+
+  .float-container {
+    padding: 20px;
+  }
+
+  .float-child {
+      float: left;
+  }  
+
+  .profile, .hobbys, .float-child-right{
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 5px;
+  }
+
+  .hobbys{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .float-child-left{
+    text-align: center;
+    width: 25%;
+    margin-right: 20px;
+  }
+
+  .float-child-right{
+    width: 65%;
+    
+  }
+
+  .float-child-right p{
+    padding: 10px;
+  }
+
+  .float-child-right h3{
+    padding: 10px;
+  }
+
+  .profile_img{
+    height: 100%;
+    margin-top: 20px;
+  }
+
+  .image-cropper {
+    width: 50%;
+    height: 80%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+  img {
+    display: inline;
+    margin: 0 auto;
+    width: 100%;
+    height: 80%;
+  }
+
+  .hobbys li{
+    list-style: none;
+    text-align: left;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    .float-child-left, .float-child-right{
+      width: 100%;
+    }
+  }
