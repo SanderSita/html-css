@@ -98,6 +98,17 @@ body {
     text-align: left;
   }
 
+  .user_tabel{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+  }
+
+  #user_table{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 
   @media only screen and (max-width: 600px) {
     .float-child-left, .float-child-right{

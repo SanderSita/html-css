@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section class="topnav">
+    <a class="active" href="index.html">HOME</a>
+    <a href="new.html">NEW</a>
+  </section>
+
+  <div class="user_tabel">
+    <form>
+        <label for="voornaam">Voornaam:</label><br>
+        <input type="text" id="voornaam"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email"><br><br>
+        <label for="bericht">Bericht:</label><br>
+        <input type="text" id="bericht"><br><br>
+        <input type="submit" value="Submit" onclick="return post_form()">
+    </form>
+
+
+      
+    <table id="user_table">
+      <tr>
+        <th>Naam</th>
+        <th>email</th>
+        <th>bericht</th>
+      </tr>
+    </table>
+  </div>
+      
+</body>
+
+<script src="main.js"></script>
+</html>
