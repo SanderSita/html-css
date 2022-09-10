@@ -7,18 +7,22 @@ function post_form(){
     let input_email = email.value
     let input_bericht = bericht.value
 
-    var table = document.getElementById("user_table");
-    table.innerHTML += `
-    <tr>
-          <td>${input_voornaam}</td>
-          <td>${input_email}</td>
-          <td>${input_bericht}</td>
-    </tr>
-  `;
+    if(input_voornaam && input_email && input_bericht){
+      var table = document.getElementById("user_table");
+      table.innerHTML += `
+      <tr>
+            <td>${input_voornaam}</td>
+            <td>${input_email}</td>
+            <td>${input_bericht}</td>
+      </tr>
+    `;
+    }
 
-  input_voornaam.value = "";
-  input_email.value = "";
-  input_bericht.value = "";
+    
+
+  voornaam.value = "";
+  email.value = "";
+  bericht.value = "";
 
   return false;
 
