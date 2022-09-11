@@ -9,32 +9,35 @@
 </head>
 <body>
 
-  <section class="topnav">
-    <a id="first_item" href="index.html">HOME</a>
-    <a class="active" href="new.html">NEW</a>
-  </section>
+  <nav>
+    <section class="topnav">
+      <a id="first_item" href="index.html">HOME</a>
+      <a class="active" href="new.html">NEW</a>
+    </section>
+  </nav>
 
-  <div class="user_form">
-    <form>
-        <label for="voornaam">Voornaam:</label><br>
-        <input type="text" id="voornaam"><br><br>
-        <label for="email">Email:</label><br>
-        <input type="text" id="email"><br><br>
-        <label for="bericht">Bericht:</label><br>
-        <input type="text" id="bericht"><br><br>
-        <input type="submit" value="Submit" onclick="return post_form()">
-    </form>
-
-
+  <main>
+    <div class="user_form">
+      <form>
+          <label for="voornaam">Voornaam:</label><br>
+          <input type="text" id="voornaam"><br><br>
+          <label for="email">Email:</label><br>
+          <input type="text" id="email"><br><br>
+          <label for="bericht">Bericht:</label><br>
+          <input type="text" id="bericht"><br><br>
+          <input type="submit" value="Submit" onclick="return post_form()">
+      </form>
       
-    <table id="user_table">
-      <tr>
-        <th>Naam</th>
-        <th>email</th>
-        <th>bericht</th>
-      </tr>
-    </table>
-  </div>
+      <table id="user_table">
+        <tr>
+          <th>Naam</th>
+          <th>email</th>
+          <th>bericht</th>
+        </tr>
+      </table>
+    </div>
+  </main>
+  
       
 </body>
 
