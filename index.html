@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profielpagina</title>
     <link rel="stylesheet" href="style.css">
+    <script src="/assets/js/app.js"></script>
+    <script src="https://kit.fontawesome.com/25f7bcd6cb.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
   <nav>
     <section class="topnav">
-      <a id="first_item" class="active" href="index.html">HOME</a>
-      <a href="new.html">NEW</a>
+      <a id="first_item" href="#" class="active">HOME</a>
+      <a id="new_button" href="#">NEW</a>
     </section>
   </nav>
     
@@ -62,6 +64,26 @@
           modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
           totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
           quasi aliquam eligendi, placeat qui corporis!</p>
+      </section>
+
+      <section id="message_board" class="float-child float-child-right">
+        <h3>Message Board</h3>
+        <div id="todo_lijst">
+          <!-- <p>yo<i onclick="return delete_message()" id="deletebutton" class="fa-solid fa-trash"></i></p> -->
+        </div>
+      </section>
+
+      <section class="float-child float-child-right message-form">
+        <p>Plaats Bericht:</p>
+        <div class="todo_form">
+          <input class="inputs" id="message_name" type="text" placeholder="Naam:">
+          <textarea class="inputs" id="message_textarea" name="txtname" rows="4" cols="50" maxlength="200" value="Send" placeholder="Bericht:"></textarea>
+          <a id="error_message"></a>
+          <div class="buttoncontainer">
+            <input id="add_button" type="submit" value="PLAATS" >
+          </div>
+        </div>
+        
       </section>
     </div>
   </main>

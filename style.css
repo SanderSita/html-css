@@ -64,10 +64,12 @@ body {
   text-align: center;
   width: 25%;
   margin-right: 20px;
+  height: 900px;
 }
 
 .float-child-right{
   width: 65%;  
+  margin-bottom: 20px;
 }
 
 .float-child-right p{
@@ -124,6 +126,9 @@ img {
 @media only screen and (max-width: 600px) {
   .float-child-left, .float-child-right{
     width: 100%;
+  }
+  .float-child-left{
+    height: 400px;
   }
 }
 
@@ -188,3 +193,53 @@ input[type=submit] {
   padding: 20px;
 }
 
+
+
+.buttoncontainer{
+  width: 100%;
+  text-align: center;
+}
+
+
+.inputs{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.message-form p{
+  text-align: center;
+}
+
+#plaats_button{
+  padding: 0px;
+  width: 15%;
+  height: 25px;
+}
+
+
+
+.boardcontainer i{
+  float: right;
+}
+
+.fa-trash{
+  color: #0275D8;
+  font-size: 25px;
+  font-weight: 800;
+  float: right;
+}
+
+#todo_lijst p {
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+#error_message{
+  color: red;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+}
