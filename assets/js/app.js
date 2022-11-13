@@ -65,6 +65,8 @@ window.onload = () => {
         if(form_input.value == '' || name_input.value == ''){
             error_message.innerHTML = "Vul alles in!"
         }else{
+            
+
             error_message.innerHTML = ""
             
             let item_text = document.createElement('p')
@@ -85,10 +87,90 @@ window.onload = () => {
             delete_button.addEventListener("click", () => {
                 item_text.parentElement.remove()
             });
+
+            let timestamp = new Date();
+            let message = new Message(
+                null,
+                timestamp.toISOString().slice(0, 19).replace('T', ' '), 
+                form_input.value
+            );
+
+            insert_message_db(message)
         }
 
         
 
+    }
+
+
+    let todo_lijst = document.getElementById("todo_lijst")
+
+    FYSCloud.API.queryDatabase(
+        "SELECT * FROM message"
+    ).then(function(data) {
+        show_messages(data)
+        
+    }).catch(function(reason) {
+        console.log(reason);
+    });
+
+
+    function show_messages(data){
+        for(let i = 0; i < data.length; i++){
+            let message = data[i].message
+
+            let parentdiv = document.createElement("div")
+            
+            let item_text = document.createElement('p')
+            item_text.innerHTML = message
+        
+            let delete_button = document.createElement('i')
+            delete_button.classList.add('fa-solid', 'fa-trash');
+        
+            item_text.append(delete_button)
+            todo_lijst.append(parentdiv)
+            parentdiv.append(item_text)
+
+            delete_button.addEventListener("click", () => {
+                item_text.parentElement.remove()
+            });
+        }
+    }
+
+    function insert_message_db(message){
+        FYSCloud.API.queryDatabase(
+            "INSERT INTO `message` (`timestamp`, `message`) VALUES (?, ?);",
+            [message.timestamp, message.message]
+        )
+        .then(response => {
+            message.id = response.insertId;
+            displayMessage(message);
+        })
+        .catch(function(reason) {
+            console.error(reason);
+        });
+    }
+
+    function displayMessage(message){
+        let parentdiv = document.createElement("div")
+
+        let item_text = document.createElement('p')
+        item_text.innerHTML = message.message
+
+        item_text.innerHTML += ` -  tijd: ${message.timestamp} - id: ${message.id}`
+
+        let delete_button = document.createElement('i')
+        delete_button.classList.add('fa-solid', 'fa-trash');
+
+        item_text.append(delete_button)
+        todo_lijst.append(parentdiv)
+        parentdiv.append(item_text)
+
+        
+        delete_button.addEventListener("click", () => {
+            item_text.parentElement.remove()
+            //delete uit de database
+        });
     }
 }
 
