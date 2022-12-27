@@ -69,33 +69,46 @@ window.onload = () => {
 
             error_message.innerHTML = ""
             
-            let item_text = document.createElement('p')
-            item_text.innerHTML = form_input.value
+            // let item_text = document.createElement('p')
+            // item_text.innerHTML = form_input.value
 
-            item_text.innerHTML += ` -  Door: ${name_input.value} - ${post_date}`
+            // item_text.innerHTML += ` -  Door: ${name_input.value} - ${post_date}`
     
-            let delete_button = document.createElement('i')
-            delete_button.classList.add('fa-solid', 'fa-trash');
+            // let delete_button = document.createElement('i')
+            // delete_button.classList.add('fa-solid', 'fa-trash');
     
-            item_text.append(delete_button)
-            todo_lijst.append(parentdiv)
-            parentdiv.append(item_text)
+            // item_text.append(delete_button)
+            // todo_lijst.append(parentdiv)
+            // parentdiv.append(item_text)
+
+            
+            
+            // delete_button.addEventListener("click", () => {
+            //     item_text.parentElement.remove()
+            // });
+
+            let timestamp = new Date();
+            let message = {
+                idmessage: null,
+                timestamp: timestamp.toISOString().slice(0, 19).replace('T', ' '), 
+                message: form_input.value
+            };
+
+            
+            console.log(message.message)
+
+
+
+
+
+            insert_message_db(message)
+
+
+
+
 
             form_input.value = ""
             name_input.value = ""
-            
-            delete_button.addEventListener("click", () => {
-                item_text.parentElement.remove()
-            });
-
-            let timestamp = new Date();
-            let message = new Message(
-                null,
-                timestamp.toISOString().slice(0, 19).replace('T', ' '), 
-                form_input.value
-            );
-
-            insert_message_db(message)
         }
 
         
@@ -108,6 +121,7 @@ window.onload = () => {
     FYSCloud.API.queryDatabase(
         "SELECT * FROM message"
     ).then(function(data) {
+        console.log(data)
         show_messages(data)
         
     }).catch(function(reason) {
@@ -133,18 +147,35 @@ window.onload = () => {
 
             delete_button.addEventListener("click", () => {
                 item_text.parentElement.remove()
+
+                //delete van database
+                console.log(data[i].idmessage)
+
+                FYSCloud.API.queryDatabase(
+                    //DELETE FROM message WHERE idmessage = 'Mustafa Mbari'
+                    "DELETE FROM message WHERE idmessage = ?;",
+                    [data[i].idmessage]
+                )
+                .then(response => {
+                    console.log(response)
+                    console.log("success delete")
+                })
+                .catch(function(reason) {
+                    console.error(reason);
+                });
             });
         }
     }
 
     function insert_message_db(message){
         FYSCloud.API.queryDatabase(
-            "INSERT INTO `message` (`timestamp`, `message`) VALUES (?, ?);",
+            "INSERT INTO message (timestamp, message) VALUES (?, ?);",
             [message.timestamp, message.message]
         )
         .then(response => {
-            message.id = response.insertId;
+            message.messageid = response.insertId;
             displayMessage(message);
+            console.log("success")
         })
         .catch(function(reason) {
             console.error(reason);
@@ -157,7 +188,7 @@ window.onload = () => {
         let item_text = document.createElement('p')
         item_text.innerHTML = message.message
 
-        item_text.innerHTML += ` -  tijd: ${message.timestamp} - id: ${message.id}`
+        item_text.innerHTML += ` -  tijd: ${message.timestamp} - id: ${message.messageid}`
 
         let delete_button = document.createElement('i')
         delete_button.classList.add('fa-solid', 'fa-trash');
@@ -169,7 +200,24 @@ window.onload = () => {
         
         delete_button.addEventListener("click", () => {
             item_text.parentElement.remove()
+
             //delete uit de database
+            console.log("delete??")
+            console.log(message.messageid)
+
+            FYSCloud.API.queryDatabase(
+                //DELETE FROM message WHERE idmessage = 'Mustafa Mbari'
+                "DELETE FROM message WHERE idmessage = ?;",
+                [message.messageid]
+            )
+            .then(response => {
+                console.log(response)
+                console.log("success")
+            })
+            .catch(function(reason) {
+                console.error(reason);
+            });
+
         });
     }
 }
